@@ -1,0 +1,22 @@
+version: '3'
+services:
+
+  # mysql
+  mysql:
+    image: "mysql:5.7.10"
+    container_name: "go-mysql"
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: "xxxx"
+      MYSQL_USER: "xxxx"
+      MYSQL_PASSWORD: "xxx"
+      MYSQL_DATABASE: "gotest"
+
+  server:
+    build: .
+    container_name: "golang-server"
+    ports:
+      - "5000:5000"
+    depends_on:
+      - "mysql"
